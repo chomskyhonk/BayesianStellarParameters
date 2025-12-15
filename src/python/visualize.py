@@ -50,6 +50,21 @@ def plot_corner(samples, labels=None):
 
 
 if __name__ == '__main__':
+    import sys
+    
     print("Bayesian Stellar Parameters - Python Visualization")
+    
     # TODO: Add command line interface
-    # Example: python visualize.py --input results.csv --output figure.png
+    # Example implementation:
+    if len(sys.argv) > 1:
+        # Simple example: python visualize.py input_file.csv
+        input_file = sys.argv[1]
+        output_file = 'output.png' if len(sys.argv) < 3 else sys.argv[2]
+        
+        # Load and plot data
+        # data = np.loadtxt(input_file)
+        # plot_results(data, output_file)
+        print(f"Would process: {input_file} -> {output_file}")
+    else:
+        print("Usage: python visualize.py <input_file> [output_file]")
+        print("Example: python visualize.py results.csv figure.png")

@@ -42,7 +42,7 @@ Create plots and analyze results:
 
 ```bash
 cd ../python
-python visualize.py --input ../../results/mcmc_samples.csv
+python visualize.py ../../results/mcmc_samples.csv ../../figures/output.png
 ```
 
 ## Step 5: Interpret Results

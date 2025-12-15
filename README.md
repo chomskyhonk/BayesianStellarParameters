@@ -66,7 +66,7 @@ BayesianStellarParameters/
 3. **Install Python dependencies:**
    ```bash
    cd src/python
-   pip install -r requirements.txt  # (create this file with your dependencies)
+   pip install -r requirements.txt
    ```
 
 4. **Build C++ code:**
