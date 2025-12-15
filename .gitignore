@@ -68,3 +68,6 @@ data/*.dat
 tmp/
 temp/
 *.tmp
+
+# CodeQL analysis files
+_codeql_detected_source_root
