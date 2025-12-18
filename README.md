@@ -1,17 +1,88 @@
-# Bayesian Stellar Parameters
+# Probabilistic Parameter Determination of Stars and Galaxies
 
-A Bayesian inference pipeline to estimate fundamental stellar parameters, specifically age and metallicity, for Solar neighbourhood stars.
+### MSc Research Project – University College London (UCL)
 
-## Overview
+This project explores the use of Bayesian inference to estimate the ages and metallicities of stars in the Solar neighbourhood, leveraging large-scale stellar datasets from Gaia. Accurate age determination is one of the most challenging problems in Galactic astrophysics due to observational uncertainties and degeneracies between stellar parameters and within stellar models like isochrones.  
+By applying a probabilistic approach, this project demonstrates how Bayesian modelling and isochrone fitting can be used to generate strong posterior distributions for fundamental stellar parameters.
 
-Traditional frequentist techniques suffer from large uncertainties and isochrone degeneracies when estimating stellar parameters. This project tests whether a Bayesian framework can improve inference and reproduce known Galactic trends.
+---
 
-### Key Features
+## Project Overview
 
-- **Bayesian Inference**: Robust parameter estimation with proper uncertainty quantification
-- **Statistical Analysis**: Advanced MCMC sampling and likelihood calculations
-- **Data Processing**: Efficient handling of stellar parameter data
-- **Visualization**: Publication-quality plots and corner plots for posterior distributions
+Traditional stellar parameter estimation methods suffer from large uncertainties and model degeneracies. This project develops a Bayesian inference pipeline to overcome these challenges by:
+
+- Integrating prior information from stellar evolution models and previous literature
+- Constraining parameter inference with stellar model probability distribution functions (PDFs)
+- Performing probabilistic isochrone fitting to observed Gaia data in the form of the likelihood function  
+- Quantifying uncertainty through full posterior PDFs
+- Testing the resulting age–velocity and metallicity–dispersion relations against the literature  
+
+The core goal is to validate Bayesian methods as a reliable tool for stellar parameter estimation, and to understand how biases and selection effects influence inferences about the structure and evolution of the Galactic disk, particualrly in the Solar neighbourhood.
+
+---
+
+## Methodology
+
+1. Data Acquisition  
+   - Parallax-limited sample of stars from the Gaia database  
+   - Queried using ADQL (SQL-like language for astronomical databases)  
+   - Preprocessed and cleaned using Python (NumPy, Pandas)
+
+2. Bayesian Modelling  
+   - Constructed likelihoods for observed stellar parameters  
+   - Combined with priors and constraining models based on stellar evolution and isochrones  
+   - Implemented inference via combining these using Bayesian formalism in C++
+
+3. Posterior Analysis 
+   - Extracted PDFs for stellar age and metallicity using marginalisation  
+   - Evaluated global relations such as:
+     - Age–velocity dispersion relation (β = 0.29 ± 0.01)
+     - Metallicity–dispersion trends
+   - Assessed model bias, overprediction of old/metal-rich stars, and uncertainty propagation
+
+4. Visualisation & Validation  
+   - Produced distribution maps and statistical summaries with Matplotlib
+   - Compared results with literature to validate physical consistency
+
+---
+
+## Key Results
+
+- Derived an age–velocity dispersion relation (AVR) consistent with theoretical and empirical expectations  
+- Identified negative metallicity–dispersion trends, revealing higher kinematic heating at intermediate metallicities  
+- Validated Bayesian isochrone fitting as a credible framework for probabilistic stellar parameter estimation  
+- Highlighted limitations such as overestimation of old, metal-rich stars, suggesting future refinement of priors and likelihood constraints  
+
+---
+
+## Tools & Technologies
+
+| Category | Tools / Libraries |
+|-----------|-------------------|
+| Languages | C++, Python |
+| Data Handling | Pandas, NumPy |
+| Statistical Modelling | SciPy, custom C++ routines |
+| Database Querying | ADQL (Astronomical SQL), API |
+| Visualisation | Matplotlib |
+| Workflow Automation | API-based data collection of isochrones and automated processing pipelines |
+
+---
+
+## Lessons Learned
+
+- Developed strong expertise in probabilistic inference,*data pipeline design, and statistical model validation 
+- Gained experience integrating multi-source datasets and ensuring data reproducibility  
+- Improved understanding of how biases and selection effects influence model inference  
+- Strengthened ability to communicate complex analytical results 
+
+---
+
+## Abstract
+
+> Decoding the age and metallicity distributions of stars in the Solar neighbourhood is central to tracing the kinematic evolution of the Galactic disk, yet direct age determinations are notoriously uncertain. Traditional techniques are limited by large observational uncertainties and isochrone degeneracies. This project employs a **Bayesian framework** to fit isochrones to *Gaia* stars, integrating prior information and probabilistic error treatment. The resulting posterior probability distributions enable robust statistical inference of stellar ages and compositions. The derived age–velocity dispersion relation (β = 0.29 ± 0.01) aligns with literature, with higher vertical heating observed compared to in-plane motion. The model reproduces key Solar neighbourhood trends in disk heating and chemical evolution, while highlighting overprediction of old, metal-rich stars as a limitation for future improvement.  
+
+---
+
 
 ## Repository Structure
 
@@ -36,7 +107,7 @@ BayesianStellarParameters/
 
 ### Prerequisites
 
-**C++ Requirements:**
+C++ Requirements:
 - C++11 or later
 - Standard library
 - (Add other dependencies as needed)
@@ -108,26 +179,17 @@ See the `examples/` directory for:
 
 - **Thesis/Project Paper**: See `docs/` for the complete theoretical background, methodology, and analysis
 - **Code Documentation**: Each subdirectory contains a README with specific documentation
-- **API Reference**: (Add links to generated documentation if available)
 
-## Methodology
 
-This project implements a Bayesian framework for stellar parameter estimation:
-
-1. **Data Preparation**: Load and preprocess observational data
-2. **Model Setup**: Define likelihood functions and priors based on stellar evolution models
-3. **MCMC Sampling**: Use Markov Chain Monte Carlo to sample the posterior distribution
-4. **Analysis**: Compute parameter estimates and uncertainties
-5. **Visualization**: Generate diagnostic plots and scientific figures
-
-## Results
+##Results
 
 (Add summary of key findings or link to thesis)
 
 Key achievements:
 - Improved uncertainty quantification compared to frequentist methods
 - Successful recovery of known Galactic trends
-- Robust handling of isochrone degeneracies
+- Handling of isochrone degeneracies
+- Identification of overabundance of old, metal-rich stars
 
 ## Contributing
 
