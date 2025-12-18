@@ -64,7 +64,7 @@ The core goal is to validate Bayesian methods as a reliable tool for stellar par
 | Data Handling | Pandas, NumPy |
 | Statistical Modelling | SciPy, custom C++ routines |
 | Database Querying | ADQL (Astronomical SQL), API |
-| Visualisation | Matplotlib |
+| Visualisation | Matplotlib, Seaborn |
 | Workflow Automation | API-based data collection of isochrones and automated processing pipelines |
 
 ---
@@ -89,15 +89,13 @@ The core goal is to validate Bayesian methods as a reliable tool for stellar par
 
 ```
 BayesianStellarParameters/
-├── docs/                  # Documentation and thesis materials
+├── docs/                  # Thesis materials
 │   └── README.md         # Documentation guide
 ├── src/
 │   ├── cpp/              # C++ code for data handling and statistical analysis
 │   │   └── README.md    # C++ code documentation
 │   └── python/           # Python code for visualization
 │       └── README.md    # Python code documentation
-├── examples/             # Example scripts and notebooks
-│   └── README.md        # Examples guide
 ├── data/                 # Data files (excluded from git)
 │   └── README.md        # Data documentation
 ├── .gitignore           # Git ignore rules
