@@ -38,6 +38,7 @@ The core goal is to validate Bayesian methods as a reliable tool for stellar par
    - Evaluated global relations such as:
      - Age–velocity dispersion relation (β = 0.29 ± 0.01)
      - Metallicity–dispersion trends
+     - Age-metallicity relation
    - Assessed model bias, overprediction of old/metal-rich stars, and uncertainty propagation
 
 4. Visualisation & Validation  
