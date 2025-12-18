@@ -105,105 +105,220 @@ BayesianStellarParameters/
 
 ## Getting Started
 
-### Prerequisites
+## Prerequisites
 
-C++ Requirements:
-- C++11 or later
-- Standard library
-- (Add other dependencies as needed)
+Ensure your development environment meets the following prerequisites:
 
-**Python Requirements:**
-- Python 3.7+
-- numpy
-- matplotlib
-- scipy
-- pandas
-- astropy (recommended)
-- corner (for corner plots)
+### Compiler & Build Tools
+- `clang++` (with support for C++17 or higher)
+- `make` (for build automation)
 
-### Installation
+### Python Requirements
+- Python 3.11
+- Required Python Libraries:
+  - `matplotlib-cpp`
+  - `pybind11`
+  - `numpy`
 
-1. **Clone the repository:**
+### Additional Dependencies
+- Eigen3: `/usr/local/opt/eigen` - did not end up using
+- Anaconda (for Python library and runtime management):
+  - Include path: `/Users/billyharrison/anaconda3/include/python3.11`
+  - Library path: `/Users/billyharrison/anaconda3/lib`
+- Project-specific Paths for External Libraries:
+  - Automate PDFs (`automatepdfs`): `/Users/billyharrison/projects/vsc/iniplots/.../isochrone_datasets/automatepdfs/include`
+  - Gaia Likelihood (`gaialikelihood`): `/Users/billyharrison/projects/vsc/iniplots/.../isochrone_datasets/gaialikelihood/include`
+  - Gaia Isochrone Grid (`gaiaisogrid`): `/Users/billyharrison/projects/vsc/iniplots/.../isochrone_datasets/gaiaisogrid/include`
+
+---
+
+## Installation
+
+Follow the instructions below to set up and build the project.
+
+1. Clone the Repository:
    ```bash
    git clone https://github.com/chomskyhonk/BayesianStellarParameters.git
    cd BayesianStellarParameters
    ```
 
-2. **Add your code:**
-   - Place C++ files in `src/cpp/`
-   - Place Python files in `src/python/`
-   - Place your thesis/project PDF in `docs/`
+2. Customize `Makefile` (Optional):
+   Depending on the specific task you want to perform, update the `TARGET` and `SRCS` variables in the `Makefile`:
+   - For Astrometry Calculations:
+     ```make
+     TARGET = astrometry
+     SRCS = astrometry.cpp
+     ```
+   - For Likelihood Calculations Only:
+     ```make
+     TARGET = gaialikelihood
+     SRCS = gaialikelihood.cpp
+     ```
+   - For Isochrone Grid Constraints Only:
+     ```make
+     TARGET = gaiaisogrid
+     SRCS = gaiaisogrid.cpp
+     ```
+   - For Full Automation Across Desired Stars (default):
+     ```make
+     TARGET = automatepdfs
+     SRCS = automatepdfs.cpp
+     ```
 
-3. **Install Python dependencies:**
+3. Build the Project:
+   Run the `make` command to compile the project:
    ```bash
-   cd src/python
-   pip install -r requirements.txt
+   make
+   ```
+   The specified `TARGET` will be created as an executable in the project root directory.
+
+4. Clean Build Files (Optional):
+   To remove all compiled files:
+   ```bash
+   make clean
    ```
 
-4. **Build C++ code:**
+---
+
+## Data Processing
+
+### Automated PDF Calculations for All Stars
+1. Ensure your data is properly organized and paths are set in `automatepdfs.cpp`.
+2. Build the project with `TARGET = automatepdfs` in the `Makefile`.
+3. Run the automation program:
    ```bash
-   cd src/cpp
-   # Add compilation instructions based on your code
+   make run
+   ```
+   This will:
+   - Perform likelihood and isogrid constraints for each star, looping through the dataset, and calculate the posterior.
+   - Save output PDFs and likelihood constraints in specified directories.
+
+### Individual Operations
+You can also run modular calculations for specific needs w.r.t dispersion, star kinematics:
+- Astrometry Calculations:
+  1. Update the `Makefile`: `TARGET = astrometry`, `SRCS = astrometry.cpp`.
+  2. Compile and run:
+     ```bash
+     make
+     ./astrometry path/to/input_file.dat
+     ```
+
+- Likelihood Calculations:
+  1. Update the `Makefile`: `TARGET = gaialikelihood`, `SRCS = gaialikelihood.cpp`.
+  2. Compile and run:
+     ```bash
+     make
+     ./gaialikelihood path/to/input_file.dat
+     ```
+
+- Isochrone Grid Constraints:
+  1. Update the `Makefile`: `TARGET = gaiaisogrid`, `SRCS = gaiaisogrid.cpp`.
+  2. Compile and run:
+     ```bash
+     make
+     ./gaiaisogrid path/to/input_file.dat
+     ```
+
+---
+
+## Example Usage
+
+Here’s how to run the programs for different use cases:
+
+1. Automate PDFs for All Stars:
+   ```bash
+   make run
    ```
 
-## Usage
+2. Individual Calculations:
+   - For `astrometry`:
+     ```bash
+     ./astrometry path/to/star_data.dat
+     ```
+   - For `likelihood`:
+     ```bash
+     ./gaialikelihood path/to/star_data.dat
+     ```
+   - For `isogrid`:
+     ```bash
+     ./gaiaisogrid path/to/star_data.dat
+     ```
+   - ^^here add your path to the desired data/csv file taken from the data folder, or queried yourself
+---
 
-### Data Processing (C++)
+## Troubleshooting
 
-Place usage instructions for your C++ data handling and statistical analysis code here.
+1. Build Errors:
+   - Verify that all paths in the `Makefile` are configured correctly.
+   - Ensure required libraries are installed and accessible.
 
-Example:
+2. Debugging:
+   - Rebuild with debugging flags enabled:
+     ```bash
+     make CXXFLAGS="-g -fsanitize=address"
+     ```
+
+3. Run-time Errors:
+   - Ensure input data files match the required format.
+   - Use `--help` flags (if supported) to explore further options.
+
+---
+
+## Plotting Results
+
+After running the calculations, you can plot the results using the provided Python scripts. Each script is designed to visualize specific aspects of the data.
+
+### Available Python Scripts
+
+The following scripts are available in the `/src/python` directory:
+
+1. **Plot Astrometry Results**:
+   - Script: `plot_astrometry.py`
+   - Description: Generates visualizations for astrometry-based calculations.
+   - Usage:
+     ```bash
+     python3 scripts/plot_astrometry.py path/to/output_astrometry_results.dat
+     ```
+
+2. **Plot Likelihood Distributions**:
+   - Script: `plot_likelihood.py`
+   - Description: Creates likelihood distribution plots for individual stars.
+   - Usage:
+     ```bash
+     python3 scripts/plot_likelihood.py path/to/likelihood_results.dat
+     ```
+
+3. **Plot Isochrone Grid Constraints**:
+   - Script: `plot_isogrid.py`
+   - Description: Produces constraint visualizations for stellar isochrones.
+   - Usage:
+     ```bash
+     python3 scripts/plot_isogrid.py path/to/isogrid_results.dat
+     ```
+
+4. **Plot Combined Results**:
+   - Script: `plot_all_results.py`
+   - Description: Automates the visualization of combined results (likelihoods, isogrids, and astrometry).
+   - Usage:
+     ```bash
+     python3 scripts/plot_all_results.py path/to/all_results_directory/
+     ```
+
+### Requirements for Plotting Scripts
+
+Ensure you have the following Python libraries installed:
+- `matplotlib`
+- `numpy`
+- `pandas` (for data manipulation, if applicable)
+  
+Install the required libraries using pip:
 ```bash
-cd src/cpp
-./analysis input_data.csv output_results.dat
+pip install matplotlib numpy pandas
 ```
-
-### Visualization (Python)
-
-Place usage instructions for your Python visualization code here.
-
-Example:
-```python
-cd src/python
-python visualize_results.py --input ../path/to/results.dat
-```
-
-### Examples
-
-See the `examples/` directory for:
-- Tutorial notebooks
-- Sample scripts
-- Example outputs
-
-## Project Documentation
-
-- **Thesis/Project Paper**: See `docs/` for the complete theoretical background, methodology, and analysis
-- **Code Documentation**: Each subdirectory contains a README with specific documentation
-
-
-##Results
-
-(Add summary of key findings or link to thesis)
-
-Key achievements:
-- Improved uncertainty quantification compared to frequentist methods
-- Successful recovery of known Galactic trends
-- Handling of isochrone degeneracies
-- Identification of overabundance of old, metal-rich stars
-
-## Contributing
-
-Contributions are welcome! Please:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/new-feature`)
-3. Commit your changes (`git commit -am 'Add new feature'`)
-4. Push to the branch (`git push origin feature/new-feature`)
-5. Open a Pull Request
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Citation
 
@@ -211,9 +326,9 @@ If you use this code in your research, please cite:
 
 ```bibtex
 @misc{bayesian_stellar_parameters,
-  author = {Your Name},
-  title = {Bayesian Stellar Parameters: A Framework for Robust Parameter Estimation},
-  year = {2024},
+  author = {Billy Harrison},
+  title = {Bayesian Stellar Parameters - Framework for Age and Metallicity PDFs},
+  year = {2025},
   publisher = {GitHub},
   url = {https://github.com/chomskyhonk/BayesianStellarParameters}
 }
