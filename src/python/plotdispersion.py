@@ -7,16 +7,16 @@ import matplotlib.pyplot as plt
 
 
 # === Configuration ===
-csv_file = "/Users/sarahharrison/projects/vsc/iniplots/t449_ACS_z001_y0259/isochrone_datasets/outputdata/velocitydispersion/sigma_agemean_metmean_binned.csv"
-csv_file2 = "/Users/sarahharrison/projects/vsc/iniplots/t449_ACS_z001_y0259/isochrone_datasets/outputdata/velocitydispersion/combined_sigma_age_binned_age_verror_parallax_MScuts100.csv"
-csv_file3 = "/Users/sarahharrison/projects/vsc/iniplots/t449_ACS_z001_y0259/isochrone_datasets/outputdata/velocitydispersion/combined_sigma_age_binned_agecut_verrorcut100.csv"
-mhcsv_file = "/Users/sarahharrison/projects/vsc/iniplots/t449_ACS_z001_y0259/isochrone_datasets/outputdata/velocitydispersion/sigma_mh_binned_agecut_maxage100.csv"
+csv_file = "/path/to/your/csv/file"
+
+
 filter_zeros = True     # ignore bins where all dispersions are 0
 plot_all = True         # if False, only plot one component below
 single_component = "sigma_total" # other options: sigma_U, sigma_V, sigma_W
 cmap = "viridis"
 parameter_names = "teff_luminosity"  # used for saving the plot
-filepath = "/Users/sarahharrison/projects/vsc/iniplots/t449_ACS_z001_y0259/isochrone_datasets/"
+#filepath = "/Users/sarahharrison/projects/vsc/iniplots/t449_ACS_z001_y0259/isochrone_datasets/"
+filepath = "your/filepath"
 components = ["sigma_U", "sigma_V", "sigma_W", "sigma_total"]
 labels = {
     "sigma_U": r"$\sigma_\mathrm{U}$ [km/s]",
@@ -421,10 +421,9 @@ def plot_powerlaw_trends_vs_age(filepath):
     plt.show()
 
 def main():
-    df = load_data(csv_file2, filter_zeros=filter_zeros, components=components)
+    df = load_data(csv_file, filter_zeros=filter_zeros, components=components)
 
     #plot_all_components(df, components, labels, cmap, filepath, parameter_names)
-    
     #plot_single_component(df, single_component, labels, cmap, filepath)
     #plot_dispersion_vs_age(df, filepath, plot_loglog=False)
     #plot_dispersion_vs_age(df, filepath, plot_loglog=False)
