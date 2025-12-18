@@ -3,6 +3,9 @@ import numpy as np
 import argparse
 import matplotlib.pyplot as plt
 
+#replace age_flame and mh_gspspec with your derived Bayesian ages and metallicities
+#as well as the upper and lower bounds for uncertainties
+
 def HRDage(csv_file, save_path, highlight_stars=None):
     df = pd.read_csv(csv_file, on_bad_lines='skip')
     df = df[df["lum_flame"] <= 5]
@@ -171,7 +174,7 @@ def HRDmet(csv_file, save_path):
 
 if __name__ == "__main__":
     highlight_stars = [(4607, 0.202), (6465, 4.38), (5896, 1.356), (5536,0.745) ] #(6000, 2.5), (3500, 0.05)]
-    csv_file = "/Users/sarahharrison/projects/vsc/iniplots/t449_ACS_z001_y0259/isochrone_datasets/GAIA10_UVW_appended.csv"
-    #HRDage(csv_file, "/Users/sarahharrison/projects/vsc/iniplots/t449_ACS_z001_y0259/isochrone_datasets/plots/HRD_age_colored2.png", highlight_stars=highlight_stars)
-    HRDmet(csv_file, "/Users/sarahharrison/projects/vsc/iniplots/t449_ACS_z001_y0259/isochrone_datasets/plots/HRD_met_colored.png")
+    csv_file = "/path/to/your/csv/file"
+    #HRDage(csv_file, "/path/to/your/savefigfile/HRD_age_colored.png", highlight_stars=highlight_stars)
+    HRDmet(csv_file, "/path/to/your/savefigfile//HRD_met_colored.png")
     
