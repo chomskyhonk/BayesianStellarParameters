@@ -3,10 +3,10 @@
 This directory contains project documentation, including:
 
 ## Contents
-
-- **Project thesis/paper (PDF)**: Place your thesis or project paper here
-  - This should include theoretical background, methodology, and analysis
-  - Graphs and figures from your research
+- Literature review (PDF) of previous similar work in the field, include most of the theoretical background
+  - `Thesis.pdf`
+- Project thesis/paper (PDF): includes methodology, analysis, graphs and figures from my research
+  - `Research_Essay_Final.pdf`
   
 ## Adding Documentation
 
@@ -15,10 +15,3 @@ To add your thesis or project PDF:
 2. Name it descriptively, e.g., `bayesian_stellar_parameters_thesis.pdf`
 3. Update the main README.md to reference it
 
-## Additional Documentation
-
-Feel free to add:
-- Supplementary notes
-- Mathematical derivations
-- Additional figures or plots
-- Research notes and methodology details
