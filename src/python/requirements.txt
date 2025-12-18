@@ -2,22 +2,15 @@
 # 
 # Install with: pip install -r requirements.txt
 
-# Core scientific computing
-numpy>=1.20.0
-scipy>=1.7.0
-pandas>=1.3.0
+pandas>=1.3.0       # For data manipulation
+numpy>=1.21.0       # For numerical computations
+matplotlib>=3.4.0   # For plotting
+seaborn>=0.11.0     # For statistical visualizations
+scipy>=1.7.0        # For curve fitting and signal processing
 
-# Visualization
-matplotlib>=3.4.0
-seaborn>=0.11.0
-
-# MCMC and Bayesian inference
-# emcee>=3.0.0  # Uncomment if using emcee for MCMC
-# corner>=2.2.0  # Uncomment for corner plots
-
-# Astronomy specific
-astropy>=4.3.0
-
-# Optional utilities
-# tqdm>=4.60.0  # Progress bars
-# h5py>=3.0.0  # For HDF5 data files
+pandas: For efficient handling and manipulation of tabular data (import pandas as pd).
+numpy: For array manipulation and numerical operations (import numpy as np).
+matplotlib: For creating plots and visualizations (import matplotlib.pyplot as plt).
+Includes mpl_toolkits.mplot3d, which is part of matplotlib and does not require a separate library.
+seaborn: For higher-level statistical visualizations (import seaborn as sns).
+scipy: For advanced numerical and scientific functionality like curve_fit and medfilt.
