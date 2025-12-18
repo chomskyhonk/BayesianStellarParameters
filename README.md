@@ -286,12 +286,6 @@ If you use this code in your research, please cite:
 
 For questions or collaboration inquiries:
 - GitHub Issues: [Project Issues](https://github.com/chomskyhonk/BayesianStellarParameters/issues)
-- (Add your contact information if desired)
+- (LinkedIn: https://www.linkedin.com/in/billy-harrison-74ab66251)
 
-## Acknowledgments
 
-- (Add acknowledgments for data sources, collaborators, funding, etc.)
-
-## References
-
-- (Add key references for the methodology and stellar evolution models used)
