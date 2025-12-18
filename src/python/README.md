@@ -17,14 +17,43 @@ pip install -r requirements.txt
 
 ## Usage
 
-Add usage examples here once you've added your Python files.
+After running the calculations, you can plot the results using the provided Python scripts. Each script is designed to visualize specific aspects of the data.
 
-## Dependencies
+### Available Python Scripts
 
-Common dependencies for this type of project:
-- numpy
-- matplotlib
-- scipy
-- pandas
-- corner (for corner plots)
-- astropy (for astronomical calculations)
+The following scripts are available in the `/src/python` directory:
+
+1. Plot Priors:
+   - Script: `priors.py`
+   - Description: Handles the calculation and visualization of prior distributions.
+   - Usage: Ensure parameters are passed within the script or modify for your data.
+
+2. 3D Scatter Visualization:
+   - Script: `3dscatter.py`
+   - Description: Creates 3D scatter plots of age, metallicity bins, and velocities with dispersion data.
+   - Usage: The script should reference your dataset and configurations pre-defined in the code.
+
+3. Plot Hertzsprung-Russell Diagram (HRD):
+   - Script: `HRDplot.py`
+   - Description: Visualizes the HRD using stellar properties, including Bayesian ages and metallicities.
+   - Usage: Replace data paths in the script and provide a `csv_file` during execution.
+
+4. Plot Velocity Dispersion:
+   - Script: `plotdispersion.py`
+   - Description: Analyzes and plots velocity dispersion components based on temperature and luminosity bins.
+   - Usage: 
+     ```bash
+     python3 src/python/plotdispersion.py
+     ```
+
+### Requirements for Plotting Scripts
+
+Ensure you have the following Python libraries installed:
+- `matplotlib`
+- `numpy`
+- `pandas` (for data manipulation, if applicable)
+
+Install the required libraries using pip:
+```bash
+pip install matplotlib numpy pandas
+```
