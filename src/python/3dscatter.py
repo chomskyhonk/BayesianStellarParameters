@@ -5,7 +5,7 @@ import seaborn as sns
 from mpl_toolkits.mplot3d import Axes3D
 
 data = pd.read_csv(
-    "/Users/sarahharrison/projects/vsc/iniplots/t449_ACS_z001_y0259/isochrone_datasets/GAIA10_with_UVW_errors.csv",
+    "/path/to/your/data",
     on_bad_lines='skip'
 )
 
@@ -14,7 +14,7 @@ mh_bins = np.linspace(-1.5, 0.42, 20)
 
 data['age_bin'] = pd.cut(data['age_flame'], bins=age_bins, labels=False, include_lowest=True)
 data['mh_bin'] = pd.cut(data['mh_gspspec'], bins=mh_bins, labels=False, include_lowest=True)
-
+#replace age_flame and mh_gspsec with your derived Bayesian ages/metallicity columns
 results = []
 
 for age_bin in range(len(age_bins)-1):
@@ -37,7 +37,7 @@ for age_bin in range(len(age_bins)-1):
 
 disp_df = pd.DataFrame(results)
 
-# Discard bins where total_disp is 0 or NaN, or n_stars < 2
+#discard bins where total_disp is 0 or NaN, or n_stars < 2
 disp_df = disp_df[(disp_df['total_disp'] > 0) & disp_df['total_disp'].notna() & (disp_df['n_stars'] >= 10)]
 
 data['Ulsr'] = data['U'] + 11.10
@@ -48,18 +48,18 @@ data['V_tot'] = np.sqrt(data['Ulsr']**2 + data['Vlsr']**2 + data['Wlsr']**2)
 fig = plt.figure(figsize=(10, 7))
 ax = fig.add_subplot(111, projection='3d')
 
-# Compute average V_tot for each bin
+#compute average V_tot for each bin
 avg_vtot = []
 for _, row in disp_df.iterrows():
     subset = data[(data['age_bin'] == row['age_bin']) & (data['mh_bin'] == row['mh_bin'])]
     avg_vtot.append(subset['V_tot'].mean() if len(subset) > 0 else np.nan)
 disp_df['avg_vtot'] = avg_vtot
 
-# Bin centers for plotting
+#bin centers for plotting
 age_centers = 0.5 * (age_bins[:-1] + age_bins[1:])
 mh_centers = 0.5 * (mh_bins[:-1] + mh_bins[1:])
 
-# Map bin indices to bin centers
+#map bin indices to bin centers
 disp_df['age_center'] = disp_df['age_bin'].apply(lambda x: age_centers[int(x)])
 disp_df['mh_center'] = disp_df['mh_bin'].apply(lambda x: mh_centers[int(x)])
 sc = ax.scatter(
@@ -81,6 +81,6 @@ cb.ax.set_xlabel(r'Average $V_{\mathrm{tot}}$ [km/s]', labelpad=10, fontsize=16)
 cb.ax.xaxis.set_label_position('bottom')
 
 plt.tight_layout()
-plt.savefig("/Users/sarahharrison/projects/vsc/iniplots/t449_ACS_z001_y0259/isochrone_datasets/plots/3dscatter.png")
+plt.savefig("/path/to/your/savefigfile")
 plt.show()
 
