@@ -87,7 +87,7 @@ def plot_combined_prior(min_age, max_age, min_mh, max_mh, num_age_bins, num_mh_b
             prior_values[~finite_mask] = min_val
 
     # Save to file
-    output_file = "/Users/sarahharrison/projects/vsc/iniplots/t449_ACS_z001_y0259/isochrone_datasets/outputdata/prior_values.txt"
+    output_file = "/path/to/your/files/outputdata/prior_values.txt"
     save_prior_values_to_text(prior_values, output_file)
 
     # Plot the combined prior as a heatmap
