@@ -263,57 +263,6 @@ Here’s how to run the programs for different use cases:
 
 ---
 
-## Plotting Results
-
-After running the calculations, you can plot the results using the provided Python scripts. Each script is designed to visualize specific aspects of the data.
-
-### Available Python Scripts
-
-The following scripts are available in the `/src/python` directory:
-
-1. **Plot Astrometry Results**:
-   - Script: `plot_astrometry.py`
-   - Description: Generates visualizations for astrometry-based calculations.
-   - Usage:
-     ```bash
-     python3 scripts/plot_astrometry.py path/to/output_astrometry_results.dat
-     ```
-
-2. **Plot Likelihood Distributions**:
-   - Script: `plot_likelihood.py`
-   - Description: Creates likelihood distribution plots for individual stars.
-   - Usage:
-     ```bash
-     python3 scripts/plot_likelihood.py path/to/likelihood_results.dat
-     ```
-
-3. **Plot Isochrone Grid Constraints**:
-   - Script: `plot_isogrid.py`
-   - Description: Produces constraint visualizations for stellar isochrones.
-   - Usage:
-     ```bash
-     python3 scripts/plot_isogrid.py path/to/isogrid_results.dat
-     ```
-
-4. **Plot Combined Results**:
-   - Script: `plot_all_results.py`
-   - Description: Automates the visualization of combined results (likelihoods, isogrids, and astrometry).
-   - Usage:
-     ```bash
-     python3 scripts/plot_all_results.py path/to/all_results_directory/
-     ```
-
-### Requirements for Plotting Scripts
-
-Ensure you have the following Python libraries installed:
-- `matplotlib`
-- `numpy`
-- `pandas` (for data manipulation, if applicable)
-  
-Install the required libraries using pip:
-```bash
-pip install matplotlib numpy pandas
-```
 
 ## License
 
